@@ -5,6 +5,7 @@
     <RootNamespace>Miguel_P2_AP2</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Miguel-P2-AP2' " />
   <ItemGroup>
     <PackageReference Include="Blazored.Toast" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9" />
@@ -14,4 +15,7 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BLL\" />
+  </ItemGroup>
 </Project>

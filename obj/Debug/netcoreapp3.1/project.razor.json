@@ -144,6 +144,39 @@
         }
       },
       {
+        "HashCode": 220121704,
+        "Kind": "Components.Component",
+        "Name": "Miguel_P2_AP2.Pages.RegistroCobros",
+        "AssemblyName": "Miguel-P2-AP2",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RegistroCobros"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Miguel_P2_AP2.Pages.RegistroCobros"
+        }
+      },
+      {
+        "HashCode": -1233945419,
+        "Kind": "Components.Component",
+        "Name": "Miguel_P2_AP2.Pages.RegistroCobros",
+        "AssemblyName": "Miguel-P2-AP2",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Miguel_P2_AP2.Pages.RegistroCobros"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Miguel_P2_AP2.Pages.RegistroCobros",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": -1893382153,
         "Kind": "Components.Component",
         "Name": "Miguel_P2_AP2.Shared.MainLayout",
@@ -15055,6 +15088,11 @@
     {
       "FilePath": "/Users/miguelgondres/Projects/Miguel-P2-AP2/Shared/SurveyPrompt.razor",
       "TargetPath": "Shared\\SurveyPrompt.razor",
+      "FileKind": "component"
+    },
+    {
+      "FilePath": "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/RegistroCobros.razor",
+      "TargetPath": "Pages\\RegistroCobros.razor",
       "FileKind": "component"
     },
     {

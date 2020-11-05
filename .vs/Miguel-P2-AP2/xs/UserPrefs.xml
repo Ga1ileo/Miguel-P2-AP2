@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{CCB50399-0FBF-4059-85D2-4317F6D3CA59}|Miguel-P2-AP2">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Cobros.cs">
+    <Files>
+      <File FileName="Models/Cobros.cs" Line="28" Column="44" />
+      <File FileName="Models/CobrosDetalle.cs" Line="30" Column="23" />
+      <File FileName="Pages/RegistroCobros.razor" Line="114" Column="13" />
+      <File FileName="BLL/ClientesBLL.cs" Line="27" Column="14" />
+      <File FileName="BLL/VentasBLL.cs" Line="38" Column="16" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Miguel-P2-AP2" expanded="True">
+            <Node name="Miguel-P2-AP2" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+                <Node name="PackageDependencies" expanded="True" selected="True" />
+              </Node>
+              <Node name="BLL" expanded="True" />
+              <Node name="DAL" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Pages" expanded="True" />
+              <Node name="Shared" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Miguel-P2-AP2 PreferredExecutionTarget="/Applications/Firefox Developer Edition.app" />
+</Properties>

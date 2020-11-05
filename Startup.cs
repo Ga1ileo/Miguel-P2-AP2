@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Miguel_P2_AP2.Data;
+using Blazored.Toast.Configuration;
+using Blazored.Toast.Services;
+using Blazored.Toast;
 
 namespace Miguel_P2_AP2
 {
@@ -26,6 +29,7 @@ namespace Miguel_P2_AP2
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddBlazoredToast();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();

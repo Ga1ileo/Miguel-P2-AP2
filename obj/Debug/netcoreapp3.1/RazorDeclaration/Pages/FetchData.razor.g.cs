@@ -77,6 +77,27 @@ using Miguel_P2_AP2.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "/Users/miguelgondres/Projects/Miguel-P2-AP2/_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "/Users/miguelgondres/Projects/Miguel-P2-AP2/_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "/Users/miguelgondres/Projects/Miguel-P2-AP2/_Imports.razor"
+using Blazored.Toast.Configuration;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/FetchData.razor"
 using Miguel_P2_AP2.Data;
 
