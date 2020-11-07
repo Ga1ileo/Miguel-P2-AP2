@@ -97,3 +97,5 @@
 /Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/Miguel-P2-AP2.genruntimeconfig.cache
 /Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/RegistroCobros.razor.g.cs
 /Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/Razor/Pages/RegistroCobros.razor.g.cs
+/Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/ConsultaVentas.razor.g.cs
+/Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/Razor/Pages/ConsultaVentas.razor.g.cs

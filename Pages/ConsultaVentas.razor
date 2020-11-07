@@ -1,0 +1,85 @@
+﻿@page "/ventas"
+
+@using Miguel_P2_AP2.Models
+@using Miguel_P2_AP2.BLL
+
+
+@inject IToastService toast
+
+<div class="card">
+
+    <div class="card-header">
+        <h3>Consulta de Pedidos</h3>
+    </div>
+
+    <div class="card-body">
+        <div class="form-group">
+            <div class="form-row">
+                <div class="input-group">
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <select class="form-control" @bind="filtro">
+                                <option value="0">Todos</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary" @onclick="Consultar">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>VentaId</th>
+                <th>Fecha</th>
+                <th>ClienteId</th>
+                <th>Monto</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in lista)
+            {
+                <tr>
+                    <td>@item.VentaId</td>
+                    <td>@item.Fecha</td>
+                    <td>@item.ClienteId</td>
+                    <td>@item.Monto</td>
+                    <td>@item.Balance</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+@code {
+
+    public int filtro { get; set; }
+    public List<Ventas> lista = new List<Ventas>();
+
+
+    private void Consultar()
+    {
+        try
+        {
+            switch (filtro)
+            {
+                case 0:
+                    this.lista = VentasBLL.GetList(p => true);
+                    break;
+            }
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+}
