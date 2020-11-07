@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Miguel_P2_AP2.DAL;
 using Miguel_P2_AP2.Models;
@@ -10,94 +11,102 @@ namespace Miguel_P2_AP2.BLL
 {
     public class CobrosBLL
     {
-        public static bool Guardar(Cobros cobros)
+        public async static Task<bool> Guardar(Cobros cobro)
         {
-            if (!Existe(cobros.CobroId))//si no existe insertamos
-                return Insertar(cobros);
-            else
-                return Modificar(cobros);
-
+            return await Insertar(cobro);
         }
 
-        private static bool Insertar(Cobros cobros)
+        public async static Task<bool> Insertar(Cobros cobro)
+        {
+            bool paso = false;
+            Contexto contexto = new Contexto();
+            cobro.CobroId = 0;
+            try
+            {
+                contexto.Cobros.Add(cobro);
+                paso = await contexto.SaveChangesAsync() > 0;
+
+                if (paso)
+                {
+                    foreach (var cobroDetalle in cobro.CobrosDetalle)
+                    {
+                        var venta = await VentasBLL.Buscar(cobroDetalle.VentaId);
+                        if (venta != null)
+                        {
+                            venta.Balance -= cobroDetalle.Monto;
+                            await VentasBLL.Modificar(venta);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                await contexto.DisposeAsync();
+            }
+
+            return paso;
+        }
+
+        public async static Task<bool> Modificar(Cobros cobro)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
 
+            await contexto.Database.ExecuteSqlRawAsync($"DELETE FROM CobroDetalle WHERE CobroId = {cobro.CobroId}");
+            foreach (var cobroDetalle in cobro.CobrosDetalle)
+            {
+                contexto.Entry(cobro).State = EntityState.Added;
+            }
             try
             {
+                contexto.Entry(cobro).State = EntityState.Modified;
 
-                foreach (var item in cobros.CobrosDetalle)
-                {
-                    var auxCobro = contexto.Ventas.Find(item.VentaId);
-                    if (auxCobro != null)
-                    {
-                        auxCobro.Balance -= item.Balance;
-                    }
-                }
+                paso = await contexto.SaveChangesAsync() > 0;
 
-                contexto.Cobros.Add(cobros);
-                paso = contexto.SaveChanges() > 0;
             }
             catch (Exception)
             {
 
                 throw;
-
             }
             finally
             {
-                contexto.Dispose();
+                await contexto.DisposeAsync();
             }
             return paso;
         }
 
-
-        private static bool Modificar(Cobros cobros)
+        public async static Task<bool> Eliminar(int id)
         {
             bool paso = false;
-            var Anterior = Buscar(cobros.CobroId);
             Contexto contexto = new Contexto();
-
             try
             {
-                //aqui borro del detalle y disminuyo 
-                foreach (var item in Anterior.CobrosDetalle)
+                var cobro = await Buscar(id);
+
+                if (cobro != null)
                 {
-                    var auxVenta = contexto.Ventas.Find(item.VentaId);
-                    if (!cobros.CobrosDetalle.Exists(d => d.CobroDetalleId == item.CobroDetalleId))
+                    contexto.Cobros.Remove(cobro);
+                    paso = await contexto.SaveChangesAsync() > 0;
+
+                    if (paso)
                     {
-                        if (auxVenta != null)
+                        foreach (var cobroDetalle in cobro.CobrosDetalle)
                         {
-                            auxVenta.Balance -= item.Balance;
+                            var venta = await VentasBLL.Buscar(cobroDetalle.VentaId);
+                            if (venta != null)
+                            {
+                                venta.Balance += cobroDetalle.Monto;
+                                await VentasBLL.Modificar(venta);
+                            }
                         }
-
-                        contexto.Entry(item).State = EntityState.Deleted;
                     }
-
                 }
-
-                //aqui agrego lo nuevo al detalle
-                foreach (var item in cobros.CobrosDetalle)
-                {
-                    var auxVenta = contexto.Ventas.Find(item.VentaId);
-                    if (item.CobroDetalleId == 0)
-                    {
-                        contexto.Entry(item).State = EntityState.Added;
-                        if (auxVenta != null)
-                        {
-                            auxVenta.Balance += item.Balance;
-                        }
-
-                    }
-                    else
-                        contexto.Entry(item).State = EntityState.Modified;
-                }
-
-
-                contexto.Entry(cobros).State = EntityState.Modified;
-                paso = contexto.SaveChanges() > 0;
-
             }
             catch (Exception)
             {
@@ -105,105 +114,45 @@ namespace Miguel_P2_AP2.BLL
             }
             finally
             {
-                contexto.Dispose();
+                await contexto.DisposeAsync();
             }
+
             return paso;
         }
 
-        public static bool Eliminar(int id)
-        {
-            bool paso = false;
-            var Anterior = Buscar(id);
-            Contexto contexto = new Contexto();
-
-            try
-            {
-                if (Existe(id))
-                {
-
-                    foreach (var item in Anterior.CobrosDetalle)
-                    {
-                        var auxVenta = contexto.Ventas.Find(item.VentaId);
-                        if (auxVenta != null)
-                        {
-                            auxVenta.Balance = item.Balance;
-                        }
-                    }
-
-                    //aqui remueve la entidad
-                    var auxCobro = contexto.Cobros.Find(id);
-                    if (auxCobro != null)
-                    {
-                        contexto.Cobros.Remove(auxCobro);
-                        paso = contexto.SaveChanges() > 0;
-                    }
-                }
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return paso;
-        }
-
-        public static Cobros Buscar(int id)
+        public async static Task<Cobros> Buscar(int id)
         {
             Contexto contexto = new Contexto();
-            Cobros cobros;
+            Cobros cobro;
 
             try
             {
-                cobros = contexto.Cobros.Where(o => o.CobroId == id).Include(d => d.CobrosDetalle).FirstOrDefault();
+                cobro = await contexto.Cobros
+                    .Include(c => c.CobrosDetalle)
+                    .Where(v => v.CobroId == id)
+                    .FirstOrDefaultAsync();
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
             {
-                contexto.Dispose();
+                await contexto.DisposeAsync();
             }
-            return cobros;
 
+            return cobro;
         }
 
-        public static List<Cobros> GetList(Expression<Func<Cobros, bool>> expression)
-        {
-            List<Cobros> lista = new List<Cobros>();
-            Contexto db = new Contexto();
 
-            try
-            {
-                lista = db.Cobros.Where(expression).ToList();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                db.Dispose();
-            }
-
-            return lista;
-        }
-
-        public static bool Existe(int id)
+        public async static Task<bool> Existe(int id)
         {
             Contexto contexto = new Contexto();
             bool encontrado = false;
 
             try
             {
-                encontrado = contexto.Cobros.Any(o => o.CobroId == id);
-
+                encontrado = await contexto.Cobros.AnyAsync(v => v.CobroId == id);
             }
             catch (Exception)
             {
@@ -211,10 +160,34 @@ namespace Miguel_P2_AP2.BLL
             }
             finally
             {
-                contexto.Dispose();
+                await contexto.DisposeAsync();
             }
 
             return encontrado;
+        }
+
+        public async static Task<List<Cobros>> GetCobros()
+        {
+            Contexto contexto = new Contexto();
+
+            List<Cobros> cobros = new List<Cobros>();
+            await Task.Delay(01); //Para dar tiempo a renderizar el mensaje de carga
+
+            try
+            {
+                cobros = await contexto.Cobros.Include(c => c.CobrosDetalle).ToListAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                await contexto.DisposeAsync();
+            }
+
+            return cobros;
 
         }
     }
