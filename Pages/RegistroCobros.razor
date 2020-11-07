@@ -131,10 +131,9 @@
         Nuevo();
     }
 
-    private async void Nuevo()
+    private static void Nuevo()
     {
         cobros = new Cobros();
-        await VentasBLL.GetVentasPendiente(cliente.ClienteId);
         ClienteList = ClientesBLL.GetList(c => true);
         VentaList = new List<CobrosDetalle>();
         cobros.Fecha = DateTime.Now;
