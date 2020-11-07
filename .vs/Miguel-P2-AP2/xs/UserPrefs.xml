@@ -1,17 +1,7 @@
 ﻿<Properties StartupConfiguration="{CCB50399-0FBF-4059-85D2-4317F6D3CA59}|Miguel-P2-AP2">
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Pages/RegistroCobros.razor" Line="139" Column="37" />
-      <File FileName="Models/CobrosDetalle.cs" Line="21" Column="25" />
-      <File FileName="BLL/ClientesBLL.cs" Line="27" Column="20" />
-      <File FileName="BLL/CobrosBLL.cs" Line="107" Column="14" />
-      <File FileName="BLL/VentasBLL.cs" Line="76" Column="1" />
-      <File FileName="Models/Cobros.cs" Line="10" Column="10" />
-      <File FileName="Models/Clientes.cs" Line="14" Column="56" />
-      <File FileName="Models/Ventas.cs" Line="12" Column="44" />
-      <File FileName="DAL/Contexto.cs" Line="1" Column="1" />
-      <File FileName="Pages/consultaVentas.razor" Line="25" Column="98" />
-      <File FileName="Shared/NavMenu.razor" Line="31" Column="51" />
+      <File FileName="Pages/RegistroCobros.razor" Line="15" Column="146" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,7 +12,7 @@
               <Node name="DAL" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Pages" expanded="True">
-                <Node name="ConsultaVentas.razor" selected="True" />
+                <Node name="RegistroCobros.razor" selected="True" />
               </Node>
               <Node name="Shared" expanded="True" />
             </Node>
