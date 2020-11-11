@@ -45,6 +45,72 @@
         }
       },
       {
+        "HashCode": 420873771,
+        "Kind": "Components.Component",
+        "Name": "Miguel_P2_AP2.Pages.ConsultaCobros",
+        "AssemblyName": "Miguel-P2-AP2",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "ConsultaCobros"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Miguel_P2_AP2.Pages.ConsultaCobros"
+        }
+      },
+      {
+        "HashCode": -1330177923,
+        "Kind": "Components.Component",
+        "Name": "Miguel_P2_AP2.Pages.ConsultaCobros",
+        "AssemblyName": "Miguel-P2-AP2",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Miguel_P2_AP2.Pages.ConsultaCobros"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Miguel_P2_AP2.Pages.ConsultaCobros",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 1612191347,
+        "Kind": "Components.Component",
+        "Name": "Miguel_P2_AP2.Pages.ConsultaVentas",
+        "AssemblyName": "Miguel-P2-AP2",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "ConsultaVentas"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Miguel_P2_AP2.Pages.ConsultaVentas"
+        }
+      },
+      {
+        "HashCode": 2080658745,
+        "Kind": "Components.Component",
+        "Name": "Miguel_P2_AP2.Pages.ConsultaVentas",
+        "AssemblyName": "Miguel-P2-AP2",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Miguel_P2_AP2.Pages.ConsultaVentas"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Miguel_P2_AP2.Pages.ConsultaVentas",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": -771560917,
         "Kind": "Components.Component",
         "Name": "Miguel_P2_AP2.Pages.Counter",
@@ -15091,6 +15157,11 @@
       "FileKind": "component"
     },
     {
+      "FilePath": "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/ConsultaCobros.razor",
+      "TargetPath": "Pages\\ConsultaCobros.razor",
+      "FileKind": "component"
+    },
+    {
       "FilePath": "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/RegistroCobros.razor",
       "TargetPath": "Pages\\RegistroCobros.razor",
       "FileKind": "component"
@@ -15098,6 +15169,11 @@
     {
       "FilePath": "/Users/miguelgondres/Projects/Miguel-P2-AP2/Shared/NavMenu.razor",
       "TargetPath": "Shared\\NavMenu.razor",
+      "FileKind": "component"
+    },
+    {
+      "FilePath": "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/ConsultaVentas.razor",
+      "TargetPath": "Pages\\ConsultaVentas.razor",
       "FileKind": "component"
     },
     {

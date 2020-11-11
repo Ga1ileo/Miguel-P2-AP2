@@ -97,28 +97,28 @@ using Blazored.Toast.Configuration;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/RegistroCobros.razor"
+#line 3 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/ConsultaCobros.razor"
 using Miguel_P2_AP2.BLL;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/RegistroCobros.razor"
-using Miguel_P2_AP2.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/RegistroCobros.razor"
+#line 4 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/ConsultaCobros.razor"
 using Miguel_P2_AP2.DAL;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/cobro")]
-    public partial class RegistroCobros : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 5 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/ConsultaCobros.razor"
+using Miguel_P2_AP2.Models;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/consultaCobros")]
+    public partial class ConsultaCobros : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -126,94 +126,31 @@ using Miguel_P2_AP2.DAL;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 118 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/RegistroCobros.razor"
+#line 62 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Pages/ConsultaCobros.razor"
        
 
     Cobros cobros = new Cobros();
-    Clientes cliente = new Clientes();
-    Ventas ventas = new Ventas();
+    public List<Cobros> CobrosList = new List<Cobros>();
+    public int filtro { get; set; }
 
-    List<Clientes> ClienteLista = new List<Clientes>();
-    List<CobrosDetalle> VentaLista = new List<CobrosDetalle>();
 
-    protected override void OnInitialized()
+    private async void Consultar()
     {
-        Nuevo();
-    }
-
-    private void Nuevo()
-    {
-        cobros = new Cobros();
-        ClienteLista = ClientesBLL.GetList(c => true);
-        VentaLista = new List<CobrosDetalle>();
-        cobros.Fecha = DateTime.Now;
-    }
-
-    private void Guardar()
-    {
-        bool guardado;
-
-        cobros.CobrosDetalle.RemoveAll(d => d.Cobrado == 0);
-
-        guardado = CobrosBLL.Guardar(cobros);
-
-        if (guardado)
+        try
         {
-            toast.ShowSuccess("Guardado correctamente");
-            Nuevo();
+            switch (filtro)
+            {
+                case 0:
+                    this.CobrosList = await CobrosBLL.GetListAsync(c => true);
+                    break;
+
+            }
         }
-        else
-            toast.ShowError("No se pudo guardar correctamente");
-
-    }
-
-    private async Task Buscar()
-    {
-        var Cobro = CobrosBLL.Buscar(cobros.CobroId);
-
-        Cobro.CobrosDetalle = await VentasBLL.GetVentasCobradas(Cobro.ClienteId);
-
-        if (Cobro != null)
-            this.cobros = Cobro;
-        else
-            toast.ShowError("El cobro no existe");
-    }
-
-    private void Eliminar()
-    {
-        bool elimino;
-
-        elimino = CobrosBLL.Eliminar(cobros.CobroId);
-
-        if (elimino)
+        catch (Exception)
         {
-            Nuevo();
-            toast.ShowSuccess("Eliminado correctamente");
-        }
-        else
-            toast.ShowError("No fue posible eliminar");
-    }
-
-    private void Cobrar(CobrosDetalle cobroDetalle)
-    {
-        if (cobroDetalle.Cobrado == 0)
-        {
-            cobroDetalle.Cobrado = cobroDetalle.Venta.Balance;
-            cobros.TotalCobrado += cobroDetalle.Cobrado;
-        }
-        else
-        {
-            cobroDetalle.Cobrado = 0;
-            cobros.TotalCobrado -= cobroDetalle.Venta.Balance;
+            throw;
         }
     }
-
-    private async Task ObtenerVentasPendientes()
-    {
-        if (cobros.CobroId == 0)
-            cobros.CobrosDetalle = await VentasBLL.GetVentasPendiente(cobros.ClienteId);
-    }
-
 
 #line default
 #line hidden

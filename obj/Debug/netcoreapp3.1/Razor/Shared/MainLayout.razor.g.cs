@@ -100,20 +100,16 @@ using Blazored.Toast.Configuration;
         {
             __builder.OpenElement(0, "div");
             __builder.AddAttribute(1, "class", "sidebar");
-            __builder.AddMarkupContent(2, "\r\n    ");
-            __builder.OpenComponent<Miguel_P2_AP2.Shared.NavMenu>(3);
+            __builder.OpenComponent<Miguel_P2_AP2.Shared.NavMenu>(2);
             __builder.CloseComponent();
-            __builder.AddMarkupContent(4, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(5, "\r\n\r\n");
-            __builder.OpenElement(6, "div");
-            __builder.AddAttribute(7, "class", "main");
-            __builder.AddMarkupContent(8, "\r\n    ");
-            __builder.AddMarkupContent(9, "<div class=\"top-row px-4\">\r\n        <a href=\"https://docs.microsoft.com/aspnet/\" target=\"_blank\">About</a>\r\n    </div>\r\n\r\n    ");
-            __builder.OpenElement(10, "div");
-            __builder.AddAttribute(11, "class", "content px-4");
-            __builder.AddMarkupContent(12, "\r\n        ");
-            __builder.AddContent(13, 
+            __builder.AddMarkupContent(3, "\r\n\r\n");
+            __builder.OpenElement(4, "div");
+            __builder.AddAttribute(5, "class", "main");
+            __builder.AddMarkupContent(6, "<div class=\"top-row px-4\"><a href=\"https://docs.microsoft.com/aspnet/\" target=\"_blank\">About</a></div>\r\n\r\n    ");
+            __builder.OpenElement(7, "div");
+            __builder.AddAttribute(8, "class", "content px-4");
+            __builder.AddContent(9, 
 #nullable restore
 #line 13 "/Users/miguelgondres/Projects/Miguel-P2-AP2/Shared/MainLayout.razor"
          Body
@@ -122,9 +118,7 @@ using Blazored.Toast.Configuration;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(14, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(15, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

@@ -1,6 +1,5 @@
 /Users/miguelgondres/Projects/Miguel-P2-AP2/bin/Debug/netcoreapp3.1/appsettings.Development.json
 /Users/miguelgondres/Projects/Miguel-P2-AP2/bin/Debug/netcoreapp3.1/appsettings.json
-/Users/miguelgondres/Projects/Miguel-P2-AP2/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
 /Users/miguelgondres/Projects/Miguel-P2-AP2/bin/Debug/netcoreapp3.1/Miguel-P2-AP2.StaticWebAssets.xml
 /Users/miguelgondres/Projects/Miguel-P2-AP2/bin/Debug/netcoreapp3.1/Miguel-P2-AP2.deps.json
 /Users/miguelgondres/Projects/Miguel-P2-AP2/bin/Debug/netcoreapp3.1/Miguel-P2-AP2.runtimeconfig.json
@@ -99,3 +98,7 @@
 /Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/Razor/Pages/RegistroCobros.razor.g.cs
 /Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/ConsultaVentas.razor.g.cs
 /Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/Razor/Pages/ConsultaVentas.razor.g.cs
+/Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/ConsultaCobros.razor.g.cs
+/Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/Razor/Pages/ConsultaCobros.razor.g.cs
+/Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/Miguel-P2-AP2.RazorComponent.output.cache
+/Users/miguelgondres/Projects/Miguel-P2-AP2/obj/Debug/netcoreapp3.1/scopedcss/bundle/Miguel-P2-AP2.styles.css
