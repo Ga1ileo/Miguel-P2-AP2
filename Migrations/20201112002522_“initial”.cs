@@ -28,8 +28,8 @@ namespace Miguel_P2_AP2.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Fecha = table.Column<DateTime>(nullable: false),
                     ClienteId = table.Column<int>(nullable: false),
-                    VentaId = table.Column<int>(nullable: false),
-                    Cobrado = table.Column<double>(nullable: false),
+                    Totales = table.Column<int>(nullable: false),
+                    TotalCobrado = table.Column<double>(nullable: false),
                     Observaciones = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -51,6 +51,12 @@ namespace Miguel_P2_AP2.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ventas", x => x.VentaId);
+                    table.ForeignKey(
+                        name: "FK_Ventas_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "ClienteId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -61,9 +67,6 @@ namespace Miguel_P2_AP2.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     CobroId = table.Column<int>(nullable: false),
                     VentaId = table.Column<int>(nullable: false),
-                    Fecha = table.Column<DateTime>(nullable: false),
-                    Monto = table.Column<double>(nullable: false),
-                    Balance = table.Column<double>(nullable: false),
                     Cobrado = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
@@ -74,6 +77,12 @@ namespace Miguel_P2_AP2.Migrations
                         column: x => x.CobroId,
                         principalTable: "Cobros",
                         principalColumn: "CobroId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CobrosDetalle_Ventas_VentaId",
+                        column: x => x.VentaId,
+                        principalTable: "Ventas",
+                        principalColumn: "VentaId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -126,21 +135,31 @@ namespace Miguel_P2_AP2.Migrations
                 name: "IX_CobrosDetalle_CobroId",
                 table: "CobrosDetalle",
                 column: "CobroId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CobrosDetalle_VentaId",
+                table: "CobrosDetalle",
+                column: "VentaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ventas_ClienteId",
+                table: "Ventas",
+                column: "ClienteId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "CobrosDetalle");
 
             migrationBuilder.DropTable(
-                name: "CobrosDetalle");
+                name: "Cobros");
 
             migrationBuilder.DropTable(
                 name: "Ventas");
 
             migrationBuilder.DropTable(
-                name: "Cobros");
+                name: "Clientes");
         }
     }
 }

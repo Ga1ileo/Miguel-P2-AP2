@@ -9,7 +9,7 @@ using Miguel_P2_AP2.DAL;
 namespace Miguel_P2_AP2.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201104203031_initial")]
+    [Migration("20201112002522_“initial”")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,16 +58,16 @@ namespace Miguel_P2_AP2.Migrations
                     b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Cobrado")
-                        .HasColumnType("REAL");
-
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Observaciones")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("VentaId")
+                    b.Property<double>("TotalCobrado")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Totales")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("CobroId");
@@ -81,20 +81,11 @@ namespace Miguel_P2_AP2.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Balance")
-                        .HasColumnType("REAL");
-
                     b.Property<double>("Cobrado")
                         .HasColumnType("REAL");
 
                     b.Property<int>("CobroId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("Monto")
-                        .HasColumnType("REAL");
 
                     b.Property<int>("VentaId")
                         .HasColumnType("INTEGER");
@@ -102,6 +93,8 @@ namespace Miguel_P2_AP2.Migrations
                     b.HasKey("CobroDetalleId");
 
                     b.HasIndex("CobroId");
+
+                    b.HasIndex("VentaId");
 
                     b.ToTable("CobrosDetalle");
                 });
@@ -125,6 +118,8 @@ namespace Miguel_P2_AP2.Migrations
                         .HasColumnType("REAL");
 
                     b.HasKey("VentaId");
+
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Ventas");
 
@@ -181,9 +176,24 @@ namespace Miguel_P2_AP2.Migrations
 
             modelBuilder.Entity("Miguel_P2_AP2.Models.CobrosDetalle", b =>
                 {
-                    b.HasOne("Miguel_P2_AP2.Models.Cobros", null)
+                    b.HasOne("Miguel_P2_AP2.Models.Cobros", "Cobro")
                         .WithMany("CobrosDetalle")
                         .HasForeignKey("CobroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Miguel_P2_AP2.Models.Ventas", "Venta")
+                        .WithMany("Detalle")
+                        .HasForeignKey("VentaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Miguel_P2_AP2.Models.Ventas", b =>
+                {
+                    b.HasOne("Miguel_P2_AP2.Models.Clientes", "Cliente")
+                        .WithMany("venta")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
